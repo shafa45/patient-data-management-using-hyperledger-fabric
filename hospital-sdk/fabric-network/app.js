@@ -104,6 +104,10 @@ exports.connectToNetwork = async function (doctorID) {
  */
 exports.invoke = async function (networkObj, isQuery, func, args = "") {
   try {
+    // console.log("networkObj", networkObj)
+    console.log("isQuery", isQuery);
+    console.log("func", func);
+    console.log("args", args);
     if (isQuery === true) {
       const response = await networkObj.contract.evaluateTransaction(
         func,
@@ -117,6 +121,7 @@ exports.invoke = async function (networkObj, isQuery, func, args = "") {
         args = JSON.parse(args[0]);
         args = JSON.stringify(args);
       }
+     
       const response = await networkObj.contract.submitTransaction(func, args);
       await networkObj.gateway.disconnect();
       return response;

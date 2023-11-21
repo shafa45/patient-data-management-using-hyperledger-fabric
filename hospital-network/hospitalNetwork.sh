@@ -199,13 +199,13 @@ elif [ $1 == "quickstart" ]; then
   echo "Visit http://localhost:3000/ to see the hospital-client web app"
 elif [ $1 == "shutdown" ]; then
   echo "Removing Old Wallets"
-  rm -rf ../hospital-sdk/fabric-network/wallet/*
+  sudo rm -rf ../hospital-sdk/fabric-network/wallet/*
   ./network.sh down
   removeMongodbContainer volumes
   removeClientSDKContainers
 elif [ $1 == "down" ]; then
   echo "Removing Old Wallets"
-  rm -rf ../hospital-sdk/fabric-network/wallet/*
+  sudo rm -rf ../hospital-sdk/fabric-network/wallet/*
   ./network.sh down
   removeMongodbContainer volumes
 elif [ $1 == "pause" ]; then

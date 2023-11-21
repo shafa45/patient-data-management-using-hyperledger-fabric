@@ -20,12 +20,14 @@ const { hashPassword } = require("../utils/hashPassword.js");
 
 const createPatient = async (req, res) => {
   // User role from the request header is validated
-  // const userRole = req.headers.role;
+  const userRole = req.headers.role;
   // const isValidate = await validateRole([ROLE_ADMIN], userRole, res);
   // if (isValidate) return res.status(401).json({ message: "Unauthorized Role" });
   // Set up and connect to Fabric Gateway using the username in header
   const getHospitalAdmin = generateHospitalAdmin(parseInt(req.body.hospitalId));
+  // console.log("getHospitalAdmin", getHospitalAdmin)
   const networkObj = await network.connectToNetwork(getHospitalAdmin);
+  // console.log("networkObj", networkObj)
   if (networkObj.error) return res.status(400).send(networkObj.error);
 
   req.body.patientId = req.body.username;
@@ -71,15 +73,16 @@ const createPatient = async (req, res) => {
     userId: req.body.patientId,
   });
   const registerUserRes = await network.registerUser(userData);
-  if (registerUserRes.error) {
-    await network.invoke(
-      networkObj,
-      false,
-      "AdminContract:deletePatient",
-      req.body.patientId
-    );
-    return res.status(400).send(registerUserRes.error);
-  }
+  console.log("registerUserRes", registerUserRes)
+  // if (registerUserRes.error) {
+  //   await network.invoke(
+  //     networkObj,
+  //     false,
+  //     "AdminContract:deletePatient",
+  //     req.body.patientId
+  //   );
+  //   return res.status(400).send(registerUserRes.error);
+  // }
   const isPatientExist = await UserDetails.findOne({
     username: req.body.username,
   });

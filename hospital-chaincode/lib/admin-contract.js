@@ -41,6 +41,7 @@ class AdminContract extends PrimaryContract {
       args.changedBy,
       args.allergies
     );
+    console.log(newPatient)
     const exists = await this.patientExists(ctx, newPatient.patientId);
     if (exists) {
       throw new Error(`The patient ${newPatient.patientId} already exists`);

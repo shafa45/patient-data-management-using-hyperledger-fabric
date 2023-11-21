@@ -188,7 +188,8 @@ class PatientContract extends PrimaryContract {
     args = JSON.parse(args);
     let patientId = args.patientId;
     let doctorId = args.doctorId;
-
+    console.log("patientId", patientId);
+    console.log("doctorId", doctorId);
     // Get the patient asset from world state
     const patient = await this.readPatient(ctx, patientId);
     // unique doctorIDs in permissionGranted

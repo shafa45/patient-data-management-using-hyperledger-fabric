@@ -4,6 +4,7 @@
 #
 
 version: "2"
+compose_project_name: docker
 
 volumes:
   peer0.hospital3.geakminds.com:
@@ -21,7 +22,7 @@ services:
       # the following setting starts chaincode containers on the same
       # bridge network as the peers
       # https://docs.docker.com/compose/networking/
-      - CORE_VM_DOCKER_HOSTCONFIG_NETWORKMODE=${COMPOSE_PROJECT_NAME}_hospital-network
+      - CORE_VM_DOCKER_HOSTCONFIG_NETWORKMODE=docker_hospital-network
       - FABRIC_LOGGING_SPEC=INFO
       #- FABRIC_LOGGING_SPEC=DEBUG
       - CORE_PEER_TLS_ENABLED=true

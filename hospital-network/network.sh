@@ -155,7 +155,7 @@ function checkPrereqs() {
 function createOrgs() {
 
   if [ -d "organizations/peerOrganizations" ]; then
-    rm -Rf organizations/peerOrganizations && rm -Rf organizations/ordererOrganizations
+    sudo rm -Rf organizations/peerOrganizations && sudo rm -Rf organizations/ordererOrganizations
   fi
 
   # Create crypto material using cryptogen
@@ -430,16 +430,16 @@ function networkDown() {
     #Cleanup images
     removeUnwantedImages
     # remove orderer block and other channel configuration transactions and certs
-    rm -rf system-genesis-block/*.block organizations/peerOrganizations organizations/ordererOrganizations
+    sudo rm -rf system-genesis-block/*.block organizations/peerOrganizations organizations/ordererOrganizations
     ## remove fabric ca artifacts
-    rm -rf organizations/fabric-ca/hospital1/msp organizations/fabric-ca/hospital1/tls-cert.pem organizations/fabric-ca/hospital1/ca-cert.pem organizations/fabric-ca/hospital1/IssuerPublicKey organizations/fabric-ca/hospital1/IssuerRevocationPublicKey organizations/fabric-ca/hospital1/fabric-ca-server.db
-    rm -rf organizations/fabric-ca/hospital2/msp organizations/fabric-ca/hospital2/tls-cert.pem organizations/fabric-ca/hospital2/ca-cert.pem organizations/fabric-ca/hospital2/IssuerPublicKey organizations/fabric-ca/hospital2/IssuerRevocationPublicKey organizations/fabric-ca/hospital2/fabric-ca-server.db
-    rm -rf organizations/fabric-ca/ordererOrg/msp organizations/fabric-ca/ordererOrg/tls-cert.pem organizations/fabric-ca/ordererOrg/ca-cert.pem organizations/fabric-ca/ordererOrg/IssuerPublicKey organizations/fabric-ca/ordererOrg/IssuerRevocationPublicKey organizations/fabric-ca/ordererOrg/fabric-ca-server.db
-    rm -rf addHospital3/fabric-ca/hospital3/msp addHospital3/fabric-ca/hospital3/tls-cert.pem addHospital3/fabric-ca/hospital3/ca-cert.pem addHospital3/fabric-ca/hospital3/IssuerPublicKey addHospital3/fabric-ca/hospital3/IssuerRevocationPublicKey addHospital3/fabric-ca/hospital3/fabric-ca-server.db
+   sudo rm -rf organizations/fabric-ca/hospital1/msp organizations/fabric-ca/hospital1/tls-cert.pem organizations/fabric-ca/hospital1/ca-cert.pem organizations/fabric-ca/hospital1/IssuerPublicKey organizations/fabric-ca/hospital1/IssuerRevocationPublicKey organizations/fabric-ca/hospital1/fabric-ca-server.db
+   sudo rm -rf organizations/fabric-ca/hospital2/msp organizations/fabric-ca/hospital2/tls-cert.pem organizations/fabric-ca/hospital2/ca-cert.pem organizations/fabric-ca/hospital2/IssuerPublicKey organizations/fabric-ca/hospital2/IssuerRevocationPublicKey organizations/fabric-ca/hospital2/fabric-ca-server.db
+   sudo rm -rf organizations/fabric-ca/ordererOrg/msp organizations/fabric-ca/ordererOrg/tls-cert.pem organizations/fabric-ca/ordererOrg/ca-cert.pem organizations/fabric-ca/ordererOrg/IssuerPublicKey organizations/fabric-ca/ordererOrg/IssuerRevocationPublicKey organizations/fabric-ca/ordererOrg/fabric-ca-server.db
+   sudo rm -rf addHospital3/fabric-ca/hospital3/msp addHospital3/fabric-ca/hospital3/tls-cert.pem addHospital3/fabric-ca/hospital3/ca-cert.pem addHospital3/fabric-ca/hospital3/IssuerPublicKey addHospital3/fabric-ca/hospital3/IssuerRevocationPublicKey addHospital3/fabric-ca/hospital3/fabric-ca-server.db
 
 
     # remove channel and script artifacts
-    rm -rf channel-artifacts log.txt hospital-chaincode.tar.gz fabcar
+   sudo rm -rf channel-artifacts log.txt hospital-chaincode.tar.gz fabcar
 
   fi
 }

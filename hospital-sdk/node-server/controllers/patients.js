@@ -27,12 +27,14 @@ const getPatientById = async (req, res) => {
   const networkObj = await network.connectToNetwork(req.headers.username);
   if (networkObj.error) return res.status(400).send(networkObj.error);
   // Invoke the smart contract function
+  console.log("Invoking patient contract")
   const response = await network.invoke(
     networkObj,
     true,
     capitalize(userRole) + "Contract:readPatient",
     patientId
   );
+  console.log("response", response)
   response.error
     ? res.status(400).send(response.error)
     : res.status(200).send(JSON.parse(response));
@@ -153,6 +155,7 @@ const grantAccessToDoctor = async (req, res) => {
   const networkObj = await network.connectToNetwork(req.headers.username);
   if (networkObj.error) return res.status(400).send(networkObj.error);
   // Invoke the smart contract function
+  console.log("Invoking smart  grantAccessToDoctor")
   const response = await network.invoke(
     networkObj,
     false,
@@ -160,8 +163,8 @@ const grantAccessToDoctor = async (req, res) => {
     args
   );
   response.error
-    ? res.status(500).send(response.error)
-    : res.status(200).send(`Access granted to ${doctorId}`);
+    ? res.status(500).send(response.error):
+    res.status(200).send(`Access granted to ${doctorId}`);
 };
 /**
  * @param  {Request} req Role in the header. patientId, doctorId in the url
