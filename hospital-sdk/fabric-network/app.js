@@ -120,9 +120,11 @@ exports.invoke = async function (networkObj, isQuery, func, args = "") {
       if (args) {
         args = JSON.parse(args[0]);
         args = JSON.stringify(args);
+        console.log("Inside else block args", args)
       }
      
       const response = await networkObj.contract.submitTransaction(func, args);
+    
       await networkObj.gateway.disconnect();
       return response;
     }

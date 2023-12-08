@@ -30,7 +30,7 @@ class AdminContract extends PrimaryContract {
 
     let newPatient = new Patient(
       args.patientId,
-      args.firstName,
+      args.firstname,
       args.lastName,
       args.password,
       args.age,
@@ -47,7 +47,8 @@ class AdminContract extends PrimaryContract {
       throw new Error(`The patient ${newPatient.patientId} already exists`);
     }
     const buffer = Buffer.from(JSON.stringify(newPatient));
-    await ctx.stub.putState(newPatient.patientId, buffer);
+    // await ctx.stub.putState(newPatient.patientId, buffer);
+    return ctx.stub.putState(newPatient.patientId, buffer);
   }
 
   //Read patient details based on patientId
