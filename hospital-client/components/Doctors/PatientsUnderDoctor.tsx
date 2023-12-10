@@ -31,6 +31,7 @@ const PatientsUnderDoctor: React.FC<{
   const openHistoryModal = () => {
     setIsHistoryOpen(true);
   };
+// console.log(patientDetail)
 
   return (
     <>
@@ -49,7 +50,7 @@ const PatientsUnderDoctor: React.FC<{
                 <div className="font-semibold pl-3 pt-1 text-xl">
                   {patientDetail.patientId}
                   <span className="dark:text-gray-300 block font-normal text-lg">
-                    patient
+                    {patientDetail.phoneNumber}
                   </span>
                 </div>
               </div>

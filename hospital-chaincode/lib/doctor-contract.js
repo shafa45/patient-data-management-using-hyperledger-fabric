@@ -150,6 +150,7 @@ class DoctorContract extends AdminContract {
         diagnosis: obj.Record.diagnosis,
         treatment: obj.Record.treatment,
         followUp: obj.Record.followUp,
+        phoneNumber: obj.Record.phoneNumber
       };
       if (includeTimeStamp) {
         asset[i].changedBy = obj.Record.changedBy;

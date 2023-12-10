@@ -27,6 +27,7 @@ export interface PatientDetailsUpdateByDoctor
   extends DoctorUpdatePatientRecords {
   age: string;
   patientId: string;
+  phoneNumber: string
 }
 
 export interface PatientRegistrationFields

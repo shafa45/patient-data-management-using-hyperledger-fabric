@@ -192,6 +192,7 @@ class PatientContract extends PrimaryContract {
     console.log("doctorId", doctorId);
     // Get the patient asset from world state
     const patient = await this.readPatient(ctx, patientId);
+    console.log("patient granting access: ", patient)
     // unique doctorIDs in permissionGranted
     if (!patient.permissionGranted.includes(doctorId)) {
       patient.permissionGranted.push(doctorId);
