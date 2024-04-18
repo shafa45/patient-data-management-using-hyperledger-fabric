@@ -30,6 +30,7 @@ class PatientContract extends PrimaryContract {
   //This function is to update patient personal details. This function should be called by patient.
   async updatePatientPersonalDetails(ctx, args) {
     args = JSON.parse(args);
+    console.log("Inside Update Patient Contract", args)
     let isDataChanged = false;
     let patientId = args.patientId;
     let newFirstname = args.firstName;
@@ -40,6 +41,7 @@ class PatientContract extends PrimaryContract {
     let newEmergPhoneNumber = args.emergPhoneNumber;
     let newAddress = args.address;
     let newAllergies = args.allergies;
+    let newReports = args.reports || [];
 
     const patient = await this.readPatient(ctx, patientId);
     if (
@@ -104,6 +106,13 @@ class PatientContract extends PrimaryContract {
       patient.allergies = newAllergies;
       isDataChanged = true;
     }
+
+    if(newReports && Array.isArray(newReports) && newReports.length > 0) {
+      patient.reports = [...new Set(newReports)];
+      isDataChanged = true;
+    }
+
+    console.log("isDataChanged", isDataChanged);
 
     if (isDataChanged === false) return;
 
@@ -171,6 +180,7 @@ class PatientContract extends PrimaryContract {
         diagnosis: obj.Record.diagnosis,
         treatment: obj.Record.treatment,
         followUp: obj.Record.followUp,
+        reports: obj.Record.reports || []
       };
       if (includeTimeStamp) {
         asset[i].changedBy = obj.Record.changedBy;

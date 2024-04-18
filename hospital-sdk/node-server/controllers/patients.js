@@ -48,6 +48,7 @@ const getPatientById = async (req, res) => {
 const updatePatientPersonalDetails = async (req, res) => {
   // User role from the request header is validated
   const userRole = req.headers.role;
+  console.log("userRole", userRole);
   const isValidate = await validateRole([ROLE_PATIENT], userRole, res);
   if (isValidate) return res.status(401).json({ message: "Unauthorized Role" });
 

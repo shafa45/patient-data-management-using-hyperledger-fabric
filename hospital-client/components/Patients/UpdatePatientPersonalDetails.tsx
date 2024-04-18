@@ -11,6 +11,7 @@ import { toast } from "react-toastify";
 import axiosInstance from "@/redux/axios/axiosInterceptor";
 import { getPatientPersonalDetails } from "@/redux/actions/patientActions";
 import SelectField from "@/components/Helper/FormSelect";
+import { Upload } from "@/components/Helper/Upload";
 
 type patientDetail = {
   patientDetail: PatientPersonalDetails;
@@ -20,6 +21,15 @@ const UpdatePatientPersonalDetail: React.FC<patientDetail> = ({
   patientDetail,
   closeModal,
 }) => {
+
+  
+  function fileUpload(files: any) {
+    // console.log("Inside patient profile page:")
+    // console.log("files", files);
+    const file_urls = files?.map((file: any) => file?.fileUrl)
+    patientDetail.reports = file_urls;
+  }
+
   const dispatch = useAppDispatch();
   const [isSubmitting, setIsSubmitting] = useState(false);
 
@@ -166,6 +176,9 @@ const UpdatePatientPersonalDetail: React.FC<patientDetail> = ({
                     className="text-red-500 text-sm mt-1"
                   />
                 </div>
+                <div>
+                <Upload handleFile={fileUpload}/>
+              </div>
 
                 <button
                   type="submit"

@@ -1,3 +1,4 @@
+const  Bytescale =  require("@bytescale/sdk");
 const { ROLE_DOCTOR, capitalize, validateRole } = require("../utils/utils.js");
 const network = require("../../fabric-network/app.js");
 
@@ -30,6 +31,43 @@ const updatePatientMedicalDetails = async (req, res) => {
     ? res.status(500).send(response.error)
     : res.status(200).send("Successfully Updated Patient Details.");
 };
+
+/**
+ * @param  {Request} req Body must be a json, role in the header and patientId in the url and reportId in the url
+ * @param  {Response} res A 200 response if patient is updated successfully else a 500 response with s simple message json
+ * @description Retrieves an existing patient medical report from the ledger. This method can be executed only by the doctor.
+ */
+
+const getPatientMedicalReport = async (req, res) => {
+  // User role from the request header is validated
+  // console.log("Inside Patient Medical Report")
+  const reportId = req.params.reportId;
+  // const userRole = req.headers.role;
+  // const isValidate = await validateRole([ROLE_DOCTOR], userRole, res);
+  // if (isValidate) return res.status(401).json({ message: "Unauthorized Role" });
+  // // Set up and connect to Fabric Gateway
+  // const networkObj = await network.connectToNetwork(req.headers.username);
+  // if (networkObj.error) return res.status(400).send(networkObj.error);
+  // // Invoke the smart contract function
+  // const response = await network.query(
+  //   networkObj,
+  //   capitalize(userRole) + "Contract:getPatientMedicalReport",
+  //   req.params.patientId,
+  //   reportId
+  // );
+  // response.error
+  //   ? res.status(500).send(response.error)
+  //   : res.status(200).send(response);
+  
+  const response =  
+  Bytescale.UrlBuilder.url({
+    accountId: "FW25bzs",
+    filePath: reportId,
+  });
+
+  console.log("response", response)
+  return res.status(200).send(response);
+}
 
 /**
  * @param  {Request} req role in the header and hospitalId, doctorId in the url
@@ -67,4 +105,4 @@ const getDoctorById = async (req, res) => {
       );
 };
 
-module.exports = { getDoctorById, updatePatientMedicalDetails };
+module.exports = { getDoctorById, updatePatientMedicalDetails, getPatientMedicalReport };

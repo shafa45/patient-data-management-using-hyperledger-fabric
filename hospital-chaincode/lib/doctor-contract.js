@@ -54,6 +54,8 @@ class DoctorContract extends AdminContract {
     if (!patient.permissionGranted.includes(args.doctorId)) {
       throw new Error(`Unauthorized Doctor Trying To Update Patient Details`);
     }
+
+    patient.reports = [];
     if (
       newSymptoms !== null &&
       newSymptoms !== "" &&
@@ -150,7 +152,8 @@ class DoctorContract extends AdminContract {
         diagnosis: obj.Record.diagnosis,
         treatment: obj.Record.treatment,
         followUp: obj.Record.followUp,
-        phoneNumber: obj.Record.phoneNumber
+        phoneNumber: obj.Record.phoneNumber,
+        reports: obj.Record.reports || []
       };
       if (includeTimeStamp) {
         asset[i].changedBy = obj.Record.changedBy;

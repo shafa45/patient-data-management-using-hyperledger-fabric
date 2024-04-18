@@ -50,6 +50,7 @@ class PrimaryContract extends Contract {
       permissionGranted: asset.permissionGranted,
       password: asset.password,
       pwdTemp: asset.pwdTemp,
+      reports: asset.reports || [],
     };
     return asset;
   }

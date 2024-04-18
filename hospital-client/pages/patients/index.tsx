@@ -9,6 +9,7 @@ import UpdatePatientPersonalDetail from "@/components/Patients/UpdatePatientPers
 import Loader from "@/components/Helper/Loader";
 import FormInputReadonly from "@/components/Helper/FormInputReadonly";
 import { GenerateAvatarHeader } from "@/utils/GenerateAvatar";
+// import {Upload} from "@/components/Helper/Upload";
 
 // Profile Page for Patients
 function PatientProfilePage() {

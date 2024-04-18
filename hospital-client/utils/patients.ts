@@ -14,6 +14,7 @@ export const UpdatePatientDetailsSchema = Yup.object().shape({
     "Phone number is not valid"
   ),
   address: Yup.string().required("Address is Required"),
+  reports: Yup.array().of(Yup.string()).optional(),
 });
 
 export const RegisterAsPatientSchema = Yup.object().shape({

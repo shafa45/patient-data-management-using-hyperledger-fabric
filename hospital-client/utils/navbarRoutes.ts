@@ -57,6 +57,16 @@ export const navbarRoutes = (isLoggedIn: boolean, role: string) => {
     current: false,
   };
 
+  const UploadFile = {
+    name: "Upload File",
+    href: "/upload",
+    icon: {
+      default: "fal fa-file-upload",
+      active: "fas fa-file-upload",
+    },
+    current: false,
+  };
+
   if (!isLoggedIn) return [{ ...HomePath }];
 
   if (role === ROLE_PATIENT) return [HomePath, myProfile, Hospitals];

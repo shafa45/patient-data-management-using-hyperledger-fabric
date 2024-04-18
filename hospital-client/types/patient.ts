@@ -8,6 +8,7 @@ export interface PatientUpdatePersonalDetails {
   bloodGroup: string;
   emergPhoneNumber?: string;
   phoneNumber: string;
+  reports?: Array<string>;
 }
 
 export interface DoctorUpdatePatientRecords {
@@ -22,6 +23,7 @@ export interface DoctorUpdatePatientRecords {
 export interface PatientHistory extends DoctorUpdatePatientRecords {
   changedBy: string;
   Timestamp: { seconds: string; nanos: string };
+  reports: Array<string>;
 }
 export interface PatientDetailsUpdateByDoctor
   extends DoctorUpdatePatientRecords {
@@ -52,4 +54,5 @@ export interface PatientPersonalDetails {
   treatment: string;
   followUp: string;
   permissionGranted: string[];
+  reports?: Array<string>;
 }

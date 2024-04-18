@@ -24,7 +24,8 @@ class Patient {
     symptoms = "",
     diagnosis = "",
     treatment = "",
-    followUp = ""
+    followUp = "",
+    reports = []
   ) {
     this.patientId = patientId;
     this.firstName = firstName;
@@ -43,6 +44,7 @@ class Patient {
     this.followUp = followUp;
     this.pwdTemp = true;
     this.permissionGranted = [];
+    this.reports = reports;
     return this;
   }
 }

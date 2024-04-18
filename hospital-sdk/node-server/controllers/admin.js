@@ -47,6 +47,7 @@ const createPatient = async (req, res) => {
 
   // The request present in the body is converted into a single json string
   req.body.password = hashPassword(req.body.password);
+  req.body.reports = [];
   const data = JSON.stringify(req.body);
   const args = [data];
 
